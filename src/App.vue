@@ -16,14 +16,11 @@ function setActiveUser(index: number) {
 
 function createNewUser() {
     userRepo.insert({ name: faker.name.fullName() });
-    console.log(userRepo.query().with("tasks").get());
 }
 
 const taskRepo = useRepo(Task);
 const tasks = computed(() => taskRepo.withAll().get());
 function createTask() {
-    console.log(tasks);
-    console.log("task");
     taskRepo.insert({
         task: faker.commerce.product(),
         userId: activeUser.value.id,
